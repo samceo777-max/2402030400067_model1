@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Beautiful Registration Form</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .form-container{
+            width: 400px;
+            margin: 40px auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid #000;
+        }
+
+        h2{
+            text-align: center;
+            color: #333;
+        }
+
+        label{
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="tel"],
+        textarea,
+        select{
+            width: 90%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            margin-right: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        textarea{
+            height: 80px;
+        }
+
+        .gender,
+        .hobbies{
+            margin-bottom: 15px;
+        }
+
+        .btn{
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn:hover{
+            background-color: #45a049;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="form-container">
+
+        <h2>Registration Form</h2>
+
+        <form>
+
+            <label>Name:</label>
+            <input type="text" name="name" id="name" placeholder="Enter your name">
+
+            <label>Email:</label>
+            <input type="email" name="email" id="email" placeholder="Enter your email">
+
+            <label>Password:</label>
+            <input type="password" name="pass" id="pass" placeholder="Enter password">
+
+            <label>Contact No.:</label>
+            <input type="tel" name="phone" id="phone" placeholder="Enter phone number">
+
+            <label>Address:</label>
+            <textarea name="add" id="add" placeholder="Enter your address"></textarea>
+
+            <label>State:</label>
+            <select name="state" id="state">
+                <option>Select State</option>
+                <option value="GA">Gujarat</option>
+                <option value="MH">Maharashtra</option>
+                <option value="RJ">Rajasthan</option>
+                <option value="DL">Delhi</option>
+                <option value="UP">Uttar Pradesh</option>
+                <option value="WB">West Bengal</option>
+                <option value="TN">Tamil Nadu</option>
+            </select>
+
+            <div class="gender">
+                <label>Gender:</label><br><br>
+
+                <input type="radio" name="gender" value="Male"> Male
+
+                <input type="radio" name="gender" value="Female"> Female
+            </div>
+
+            <div class="hobbies">
+                <label>Hobbies:</label><br><br>
+
+                <input type="checkbox" name="Writing"> Writing <br>
+
+                <input type="checkbox" name="Reading"> Reading <br>
+
+                <input type="checkbox" name="Coding"> Coding <br>
+
+                <input type="checkbox" name="Gaming"> Gaming
+            </div>
+
+            <button type="submit" class="btn">Register</button>
+
+        </form>
+
+    </div>
+
+</body>
+</html>
