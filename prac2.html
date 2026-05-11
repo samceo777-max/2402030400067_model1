@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Time Table</title>
+    <style>
+        .break{
+            background-color: #D6EEEE;
+        }
+        tr:nth-child(even) {
+  background-color: #9ae6a4;
+}
+
+    </style>
+</head>
+<body>
+
+    <h2>Class Time Table</h2>
+
+    <table border="1" cellpadding="10">
+        <tr align="center">
+            <th>Time</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+        </tr>
+
+        <tr align="center">
+            <th>10:10 - 11:00</th>
+            <td>OS</td>
+            <td>WT</td>
+            <td>CGVM</td>
+            <td>PP</td>
+            <td rowspan="2">OOPU</td>
+            <td>ABPS-C</td>
+        </tr>
+
+        <tr align="center">
+            <th>11:10 - 11:50</th>
+            <td>WT</td>
+            <td>OS</td>
+            <td>PP</td>
+            <td>CGVM</td>
+            <td>ABPS-C</td>
+        </tr>
+
+        <tr align="center">
+            <th class="break">11:50 - 12:10</th>
+            <td colspan="6"class="break"><b>Break</b></td>
+        </tr>
+
+        <tr align="center">
+            <th>12:10 - 01:10</th>
+            <td>CGVM</td>
+            <td rowspan="2">CGVM</td>
+            <td>WT</td>
+            <td>OS</td>
+            <td>PP</td>
+            <td>ABPS-C</td>
+        </tr>
+
+        <tr align="center">
+            <th>01:00 - 2:00</th>
+            <td rowspan="2">PP</td>
+            <td>OOPU</td>
+            <td>OOPU</td>
+            <td>OS</td>
+            <td>-</td>
+        </tr>
+
+        <tr align="center">
+            <th>2:00 - 3:00</th>
+            <td>PP</td>
+            <td>OS</td>
+            <td rowspan="2">WT</td>
+            <td>CGVM</td>
+            <td>-</td>
+        </tr>
+
+        <tr align="center">
+            <th>3:00 - 3:50</th>
+            <td>OOPU</td>
+            <td>WT</td>
+            <td>OOPU</td>
+            <td>OS</td>
+            <td>-</td>
+        </tr>
+
+    </table>
+
+</body>
+</html>
