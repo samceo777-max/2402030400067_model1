@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gray Layout</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+
+.container{
+    width:100%;
+    background:#f5f6fa;
+
+}
+.header{
+    background:#2f3640;
+    color:white;
+    padding:25px;
+    text-align:center;
+    font-size:32px;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+
+.content{
+    display:grid;
+    grid-template-columns: 1fr 3fr;
+    min-height:500px;
+}
+
+.sidebar{
+    background:#353b48;
+    color:white;
+    padding:30px;
+}
+
+.sidebar h2{
+    margin-bottom:20px;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar ul li{
+    padding:12px;
+    margin-bottom:10px;
+    background:#4b4f58;
+    border-radius:10px;
+    transition:0.3s;
+    cursor:pointer;
+}
+
+.sidebar ul li:hover{
+    background:#718093;
+    transform:translateX(5px);
+}
+
+.main{
+    padding:40px;
+}
+
+.card-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    transition:0.3s;
+    border:1px solid #000000 !important; 
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card h3{
+    margin-bottom:10px;
+    color:#2f3640;
+}
+
+.card p{
+    color:#555;
+    line-height:1.5;
+}
+
+.footer{
+    background:#2f3640;
+    color:white;
+    text-align:center;
+    padding:15px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        Gray Layout
+    </div>
+
+    <div class="content">
+
+        <div class="sidebar">
+            <h2>Menu</h2>
+
+            <ul>
+                <li>Home</li>
+                <li>Services</li>
+                <li>Portfolio</li>
+                <li>About</li>
+                <li>Contact</li>
+            </ul>
+        </div>
+
+        <div class="main">
+
+            <div class="card-container">
+
+                <div class="card">
+                    <h3>Web Design</h3>
+                    <p>
+                        Modern responsive website design using HTML, CSS and animations.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>UI/UX Design</h3>
+                    <p>
+                        Beautiful user interfaces with smooth layouts and clean structure.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Development</h3>
+                    <p>
+                        Fast and optimized frontend development for modern websites.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Creative Ideas</h3>
+                    <p>
+                        Unique layouts and modern styling for attractive web projects.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+        © 2026 Created By Jitendra
+    </div>
+
+</div>
+
+</body>
+</html>
