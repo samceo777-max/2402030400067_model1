@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CodeLearn</title>
+
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f5f7fb;
+    color:#222;
+}
+
+nav{
+    width:100%;
+    padding:18px 7%;
+    background:rgba(15,157,88,0.95);
+    backdrop-filter:blur(10px);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+.logo{
+    color:white;
+    font-size:32px;
+    font-weight:bold;
+}
+
+.search-box{
+    width:350px;
+    display:flex;
+    background:white;
+    border-radius:40px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.search-box input{
+    width:100%;
+    padding:14px 18px;
+    border:none;
+    outline:none;
+    font-size:15px;
+}
+
+.search-box button{
+    border:none;
+    background:#087943;
+    color:white;
+    padding:14px 22px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.search-box button:hover{
+    background:#065d33;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:20px;
+}
+
+nav ul li{
+    position:relative;
+}
+
+nav ul li a{
+    color:white;
+    text-decoration:none;
+    padding:10px 15px;
+    border-radius:8px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+nav ul li a:hover{
+    background:rgba(255,255,255,0.2);
+}
+
+.dropdown-content{
+    display:none;
+    position:absolute;
+    top:35px;
+    left:0;
+    width:220px;
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+.dropdown-content a{
+    color:#222;
+    display:block;
+    padding:14px 16px;
+    border-bottom:1px solid #eee;
+}
+
+.dropdown-content a:hover{
+    background:#f2f2f2;
+    color:#0f9d58;
+}
+
+.dropdown:hover .dropdown-content{
+    display:block;
+}
+
+.hero{
+    width:100%;
+    min-height:100vh;
+    background:linear-gradient(135deg,#0f9d58,#34c97b);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:50px 8%;
+    color:white;
+    position:relative;
+    overflow:hidden;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:rgba(255,255,255,0.1);
+    border-radius:50%;
+    top:-120px;
+    left:-120px;
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    width:400px;
+    height:400px;
+    background:rgba(255,255,255,0.1);
+    border-radius:50%;
+    bottom:-120px;
+    right:-120px;
+}
+
+.hero-content{
+    position:relative;
+    z-index:1;
+    animation:fade 1.5s ease;
+}
+
+.hero-content h1{
+    font-size:75px;
+    margin-bottom:20px;
+}
+
+.hero-content p{
+    font-size:22px;
+    margin-bottom:30px;
+    line-height:1.7;
+}
+
+.hero-buttons{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.hero-buttons button{
+    padding:16px 35px;
+    border:none;
+    border-radius:12px;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn1{
+    background:white;
+    color:#0f9d58;
+}
+
+.btn2{
+    background:transparent;
+    border:2px solid white !important;
+    color:white;
+}
+
+.hero-buttons button:hover{
+    transform:translateY(-5px);
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(50px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.stats{
+    padding:80px 7%;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+}
+
+.stat-box{
+    background:white;
+    padding:40px;
+    text-align:center;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.08);
+    transition:0.4s;
+}
+
+.stat-box:hover{
+    transform:translateY(-10px);
+}
+
+.stat-box h2{
+    color:#0f9d58;
+    font-size:45px;
+    margin-bottom:10px;
+}
+
+.section-title{
+    text-align:center;
+    font-size:45px;
+    color:#0f9d58;
+    margin-bottom:50px;
+}
+
+.courses{
+    padding:20px 7% 80px;
+}
+
+.course-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:white;
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,0.08);
+    transition:0.4s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+.card-top{
+    height:180px;
+    background:linear-gradient(135deg,#0f9d58,#34c97b);
+}
+
+.card-content{
+    padding:25px;
+}
+
+.card-content h3{
+    color:#0f9d58;
+    margin-bottom:15px;
+    font-size:25px;
+}
+
+.card-content p{
+    color:#666;
+    line-height:1.6;
+    margin-bottom:20px;
+}
+
+.card-content button{
+    padding:12px 22px;
+    border:none;
+    border-radius:10px;
+    background:#0f9d58;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.card-content button:hover{
+    background:#087943;
+}
+
+.testimonials{
+    padding:80px 7%;
+    background:white;
+}
+
+.testimonial-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.testimonial{
+    padding:35px;
+    border-radius:20px;
+    background:#f7f9fc;
+    box-shadow:0 10px 20px rgba(0,0,0,0.05);
+    transition:0.3s;
+    border: 1px solid
+}
+
+.testimonial:hover{
+    transform:translateY(-8px);
+}
+
+.testimonial p{
+    color:#555;
+    line-height:1.7;
+    margin-bottom:20px;
+}
+
+.testimonial h3{
+    color:#0f9d58;
+}
+
+.newsletter{
+    margin:80px 7%;
+    padding:70px 30px;
+    border-radius:30px;
+    background:linear-gradient(135deg,#0f9d58,#34c97b);
+    text-align:center;
+    color:white;
+}
+
+.newsletter h2{
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+.newsletter p{
+    margin-bottom:30px;
+    font-size:18px;
+}
+
+.newsletter-box{
+    max-width:650px;
+    margin:auto;
+    display:flex;
+    background:white;
+    border-radius:60px;
+    overflow:hidden;
+}
+
+.newsletter-box input{
+    flex:1;
+    border:none;
+    outline:none;
+    padding:18px 20px;
+    font-size:16px;
+}
+
+.newsletter-box button{
+    border:none;
+    background:#087943;
+    color:white;
+    padding:18px 30px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+footer{
+    background:#111;
+    color:white;
+    text-align:center;
+    padding:50px 20px;
+}
+
+footer h2{
+    margin-bottom:15px;
+    font-size:35px;
+}
+
+footer p{
+    color:#bbb;
+    margin-top:10px;
+}
+
+@media(max-width:1000px){
+
+    nav{
+        flex-direction:column;
+    }
+
+    .search-box{
+        width:100%;
+    }
+
+    nav ul{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .hero-content h1{
+        font-size:55px;
+    }
+
+}
+
+@media(max-width:700px){
+
+    .hero-content h1{
+        font-size:42px;
+    }
+
+    .hero-content p{
+        font-size:18px;
+    }
+
+    .newsletter-box{
+        flex-direction:column;
+        border-radius:20px;
+    }
+
+    .newsletter-box button{
+        width:100%;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">CodeLearn</div>
+
+<div class="search-box">
+<input type="text" placeholder="Search courses...">
+<button>Search</button>
+</div>
+
+<ul>
+
+<li><a href="#">Home</a></li>
+
+<li class="dropdown">
+<a href="#">Courses ▾</a>
+
+<div class="dropdown-content">
+<a href="#">HTML & CSS</a>
+<a href="#">JavaScript</a>
+<a href="#">Python</a>
+<a href="#">React JS</a>
+<a href="#">Java</a>
+<a href="#">DSA</a>
+</div>
+
+</li>
+
+<li><a href="#">Tutorials</a></li>
+<li><a href="#">Blog</a></li>
+<li><a href="#">Contact</a></li>
+
+</ul>
+
+</nav>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>Learn Coding The Smart Way</h1>
+
+<p>
+Master Web Development, Python, DSA, React and more with
+interactive tutorials and real-world projects.
+</p>
+
+<div class="hero-buttons">
+<button class="btn1">Start Learning</button>
+<button class="btn2">Explore Courses</button>
+</div>
+
+</div>
+
+</section>
+
+<section class="stats">
+
+<div class="stat-box">
+<h2>500+</h2>
+<p>Courses Available</p>
+</div>
+
+<div class="stat-box">
+<h2>50K+</h2>
+<p>Active Students</p>
+</div>
+
+<div class="stat-box">
+<h2>100+</h2>
+<p>Expert Mentors</p>
+</div>
+
+<div class="stat-box">
+<h2>24/7</h2>
+<p>Student Support</p>
+</div>
+
+</section>
+
+<section class="courses">
+
+<h2 class="section-title">Popular Courses</h2>
+
+<div class="course-container">
+
+<div class="card">
+<div class="card-top"></div>
+<div class="card-content">
+<h3>HTML & CSS</h3>
+<p>Create modern responsive websites using HTML5 and CSS3.</p>
+<button>Learn More</button>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top"></div>
+<div class="card-content">
+<h3>JavaScript</h3>
+<p>Build interactive websites and modern web applications.</p>
+<button>Learn More</button>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top"></div>
+<div class="card-content">
+<h3>Python</h3>
+<p>Start coding with beginner-friendly Python programming.</p>
+<button>Learn More</button>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top"></div>
+<div class="card-content">
+<h3>React JS</h3>
+<p>Create fast and scalable frontend applications with React.</p>
+<button>Learn More</button>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top"></div>
+<div class="card-content">
+<h3>Java</h3>
+<p>Master object-oriented programming and Java fundamentals.</p>
+<button>Learn More</button>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top"></div>
+<div class="card-content">
+<h3>DSA</h3>
+<p>Improve coding interview and problem solving skills.</p>
+<button>Learn More</button>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section class="testimonials">
+
+<h2 class="section-title">Student Reviews</h2>
+
+<div class="testimonial-container">
+
+<div class="testimonial">
+<p>
+"Best platform to learn web development with clean UI and easy tutorials."
+</p>
+<h3>Rahul Sharma</h3>
+</div>
+
+<div class="testimonial">
+<p>
+"The courses are very interactive and helped me improve my coding skills."
+</p>
+<h3>Priya Patel</h3>
+</div>
+
+<div class="testimonial">
+<p>
+"I cracked my internship interview after completing the DSA course."
+</p>
+<h3>Aman Verma</h3>
+</div>
+
+</div>
+
+</section>
+
+<section class="newsletter">
+
+<h2>Subscribe Newsletter</h2>
+
+<p>Get latest coding tutorials, projects and updates directly in your inbox.</p>
+
+<div class="newsletter-box">
+
+<input type="email" placeholder="Enter your email">
+
+<button>Subscribe</button>
+
+</div>
+
+</section>
+
+<footer>
+
+<h2>CodeLearn</h2>
+
+<p>Learn Programming with Interactive Tutorials & Projects.</p>
+
+<p>© 2026 CodeLearn. All Rights Reserved.</p>
+
+</footer>
+
+</body>
+</html>
