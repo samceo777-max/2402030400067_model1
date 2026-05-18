@@ -1,1 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DevCircle — Developer Community</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body class="page-feed">
 
+<!-- ═══════════════════ AUTH SCREEN ═══════════════════ -->
+<div id="auth-screen">
+  <!-- Animated background grid -->
+  <div class="auth-bg">
+    <div class="auth-grid"></div>
+    <div class="auth-orb auth-orb1"></div>
+    <div class="auth-orb auth-orb2"></div>
+  </div>
+
+  <div class="auth-container">
+    <!-- Branding -->
+    <div class="auth-brand">
+      <div class="auth-logo">
+        <span class="logo-bracket">{</span>
+        <span class="logo-text">DevCircle</span>
+        <span class="logo-bracket">}</span>
+      </div>
+      <p class="auth-tagline">// where developers connect, share &amp; grow</p>
+    </div>
+
+    <!-- Tab switcher -->
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tab-login">Login</button>
+      <button class="auth-tab" id="tab-signup">Sign Up</button>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <form class="auth-form" id="login-form" autocomplete="off">
+      <div class="auth-field">
+        <label>Username or Email</label>
+        <div class="auth-input-wrap">
+          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <input type="text" id="login-user" placeholder="@devuser or you@email.com" />
+        </div>
+      </div>
+      <div class="auth-field">
+        <label>Password</label>
+        <div class="auth-input-wrap">
+          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          <input type="password" id="login-pass" placeholder="••••••••" />
+          <button type="button" class="toggle-pw" data-target="login-pass">
+            <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="auth-extras">
+        <label class="auth-check"><input type="checkbox" /><span>Remember me</span></label>
+        <a href="#" class="auth-link" id="forgot-link">Forgot password?</a>
+      </div>
+      <div class="auth-error hidden" id="login-error"></div>
+      <button type="submit" class="btn-auth" id="btn-login">
+        <span>Login</span>
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+      <div class="auth-divider"><span>or continue with</span></div>
+      <div class="auth-socials">
+        <button type="button" class="btn-social" id="btn-github">
+          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          GitHub
+        </button>
+        <button type="button" class="btn-social" id="btn-google">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          Google
+        </button>
+      </div>
+    </form>
+
+    <!-- SIGNUP FORM -->
+    <form class="auth-form hidden" id="signup-form" autocomplete="off">
+      <div class="signup-row">
+        <div class="auth-field">
+          <label>First Name</label>
+          <div class="auth-input-wrap">
+            <input type="text" id="su-firstname" placeholder="Alex" />
+          </div>
+        </div>
+        <div class="auth-field">
+          <label>Last Name</label>
+          <div class="auth-input-wrap">
+            <input type="text" id="su-lastname" placeholder="Dev" />
+          </div>
+        </div>
+      </div>
+      <div class="auth-field">
+        <label>Username</label>
+        <div class="auth-input-wrap">
+          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <input type="text" id="su-handle" placeholder="@cooldevname" />
+        </div>
+        <div class="field-hint" id="handle-hint"></div>
+      </div>
+      <div class="auth-field">
+        <label>Email</label>
+        <div class="auth-input-wrap">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <input type="email" id="su-email" placeholder="you@email.com" />
+        </div>
+      </div>
+      <div class="auth-field">
+        <label>Password</label>
+        <div class="auth-input-wrap">
+          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          <input type="password" id="su-pass" placeholder="min. 6 characters" />
+          <button type="button" class="toggle-pw" data-target="su-pass">
+            <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+        <div class="pw-strength" id="pw-strength"><div class="pw-bar" id="pw-bar"></div></div>
+      </div>
+      <div class="auth-field">
+        <label>Tech Stack (pick your tools)</label>
+        <div class="stack-picker" id="stack-picker">
+          <span class="stack-chip" data-val="JavaScript">JavaScript</span>
+          <span class="stack-chip" data-val="TypeScript">TypeScript</span>
+          <span class="stack-chip" data-val="Python">Python</span>
+          <span class="stack-chip" data-val="Rust">Rust</span>
+          <span class="stack-chip" data-val="Go">Go</span>
+          <span class="stack-chip" data-val="React">React</span>
+          <span class="stack-chip" data-val="Vue">Vue</span>
+          <span class="stack-chip" data-val="Node.js">Node.js</span>
+          <span class="stack-chip" data-val="DevOps">DevOps</span>
+          <span class="stack-chip" data-val="CSS">CSS</span>
+        </div>
+      </div>
+      <div class="auth-error hidden" id="signup-error"></div>
+      <button type="submit" class="btn-auth" id="btn-signup">
+        <span>Create Account</span>
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+      <p class="auth-terms">By signing up you agree to our <a href="#" class="auth-link">Terms</a> &amp; <a href="#" class="auth-link">Privacy Policy</a>.</p>
+    </form>
+
+  </div>
+
+  <!-- Right panel — decorative code block -->
+  <div class="auth-side">
+    <div class="code-preview">
+      <div class="code-header">
+        <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+        <span class="code-filename">welcome.js</span>
+      </div>
+      <pre class="code-body"><span class="kw">const</span> <span class="fn">devCircle</span> <span class="op">=</span> {
+  <span class="prop">mission</span>: <span class="str">"Connect builders"</span>,
+  <span class="prop">community</span>: <span class="str">"You + 50k devs"</span>,
+  <span class="prop">features</span>: [
+    <span class="str">"📝 Share your code"</span>,
+    <span class="str">"❤️  Like &amp; comment"</span>,
+    <span class="str">"🔔 Get notified"</span>,
+    <span class="str">"👥 Follow devs"</span>,
+  ],
+  <span class="prop">join</span>: <span class="fn">async</span> () =&gt; {
+    <span class="kw">await</span> signUp();
+    <span class="kw">return</span> <span class="str">"Welcome home 🚀"</span>;
+  }
+};</pre>
+    </div>
+    <div class="auth-stats">
+      <div class="astat"><span>50k+</span><label>Developers</label></div>
+      <div class="astat"><span>120k+</span><label>Posts</label></div>
+      <div class="astat"><span>8M+</span><label>Likes</label></div>
+    </div>
+  </div>
+</div>
+
+<!-- SIDEBAR NAV -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <span class="logo-bracket">{</span>
+    <span class="logo-text">DevCircle</span>
+    <span class="logo-bracket">}</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#" class="nav-item active" data-page="feed">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span>Feed</span>
+    </a></li>
+    <li><a href="#" class="nav-item" data-page="explore">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <span>Explore</span>
+    </a></li>
+    <li><a href="#" class="nav-item" data-page="notifications">
+      <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+      <span>Notifications</span>
+      <span class="badge" id="notif-badge">3</span>
+    </a></li>
+    <li><a href="#" class="nav-item" data-page="profile">
+      <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span>Profile</span>
+    </a></li>
+    <li><a href="#" class="nav-item" data-page="settings">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+      <span>Settings</span>
+    </a></li>
+  </ul>
+  <div class="sidebar-user" id="sidebar-user">
+    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=devuser" class="user-avatar-sm" />
+    <div>
+      <div class="sidebar-username">@devuser</div>
+      <div class="sidebar-handle">You</div>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE TOP BAR -->
+<header class="mobile-header">
+  <div class="logo-mobile"><span class="logo-bracket">{</span>DC<span class="logo-bracket">}</span></div>
+  <button class="hamburger" id="hamburger">&#9776;</button>
+</header>
+
+<!-- MAIN CONTENT -->
+<main class="main-content" id="main-content">
+
+  <!-- ═══════════════════ FEED PAGE ═══════════════════ -->
+  <section class="page" id="page-feed">
+    <div class="page-header">
+      <h1>Feed <span class="tag">#latest</span></h1>
+    </div>
+
+    <!-- Composer -->
+    <div class="composer card">
+      <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=devuser" class="user-avatar-sm" />
+      <div class="composer-body">
+        <textarea id="post-input" placeholder="Share your code, insight, or question..."></textarea>
+        <div class="composer-actions">
+          <div class="composer-tags">
+            <button class="tag-btn active" data-tag="javascript">JS</button>
+            <button class="tag-btn" data-tag="python">PY</button>
+            <button class="tag-btn" data-tag="rust">RS</button>
+            <button class="tag-btn" data-tag="css">CSS</button>
+            <button class="tag-btn" data-tag="devops">OPS</button>
+          </div>
+          <button class="btn-post" id="btn-post">Post</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Posts Container -->
+    <div id="posts-container"></div>
+  </section>
+
+  <!-- ═══════════════════ EXPLORE PAGE ═══════════════════ -->
+  <section class="page hidden" id="page-explore">
+    <div class="page-header">
+      <h1>Explore <span class="tag">#discover</span></h1>
+    </div>
+    <div class="search-bar">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="search-input" placeholder="Search developers, posts, tags..." />
+    </div>
+
+    <div class="explore-tags">
+      <h3>Trending Tags</h3>
+      <div class="tag-cloud" id="tag-cloud"></div>
+    </div>
+
+    <div class="explore-devs">
+      <h3>Developers to Follow</h3>
+      <div id="explore-users"></div>
+    </div>
+
+    <div class="explore-posts">
+      <h3>Trending Posts</h3>
+      <div id="explore-posts-container"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ NOTIFICATIONS PAGE ═══════════════════ -->
+  <section class="page hidden" id="page-notifications">
+    <div class="page-header">
+      <h1>Notifications <span class="tag">#inbox</span></h1>
+    </div>
+    <div id="notif-container"></div>
+  </section>
+
+  <!-- ═══════════════════ PROFILE PAGE ═══════════════════ -->
+  <section class="page hidden" id="page-profile">
+    <div class="profile-banner"></div>
+    <div class="profile-header card">
+      <div class="profile-avatar-wrap">
+        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=devuser" class="profile-avatar" id="profile-avatar" />
+      </div>
+      <div class="profile-info">
+        <h2 id="profile-name">Alex Dev</h2>
+        <p class="profile-handle" id="profile-handle">@devuser</p>
+        <p class="profile-bio" id="profile-bio">Full-stack wizard · Open source enthusiast · Coffee-driven development ☕</p>
+        <div class="profile-tags" id="profile-tags">
+          <span class="tag">JavaScript</span>
+          <span class="tag">Rust</span>
+          <span class="tag">DevOps</span>
+        </div>
+        <div class="profile-stats">
+          <div class="stat"><span id="stat-posts">0</span><label>Posts</label></div>
+          <div class="stat"><span id="stat-followers">128</span><label>Followers</label></div>
+          <div class="stat"><span id="stat-following">64</span><label>Following</label></div>
+        </div>
+        <button class="btn-edit-profile" id="btn-edit-profile">Edit Profile</button>
+      </div>
+    </div>
+    <div class="profile-tabs">
+      <button class="ptab active" data-tab="my-posts">Posts</button>
+      <button class="ptab" data-tab="liked">Liked</button>
+    </div>
+    <div id="my-posts-container"></div>
+    <div id="liked-container" class="hidden"></div>
+  </section>
+
+  <!-- ═══════════════════ SETTINGS PAGE ═══════════════════ -->
+  <section class="page hidden" id="page-settings">
+    <div class="page-header">
+      <h1>Settings <span class="tag">#config</span></h1>
+    </div>
+    <div class="settings-grid">
+      <div class="settings-section card">
+        <h3>Profile Settings</h3>
+        <label>Display Name</label>
+        <input type="text" id="set-name" value="Alex Dev" />
+        <label>Username</label>
+        <input type="text" id="set-handle" value="@devuser" />
+        <label>Bio</label>
+        <textarea id="set-bio">Full-stack wizard · Open source enthusiast · Coffee-driven development ☕</textarea>
+        <label>Tech Stack (comma separated)</label>
+        <input type="text" id="set-stack" value="JavaScript, Rust, DevOps" />
+        <button class="btn-save" id="btn-save-profile">Save Changes</button>
+      </div>
+      <div class="settings-section card">
+        <h3>Appearance</h3>
+        <label>Theme</label>
+        <div class="theme-toggle">
+          <button class="theme-btn active" data-theme="dark">Dark</button>
+          <button class="theme-btn" data-theme="light">Light</button>
+          <button class="theme-btn" data-theme="hacker">Hacker</button>
+        </div>
+        <label style="margin-top:1.5rem">Accent Color</label>
+        <div class="accent-picker" id="accent-picker">
+          <div class="accent-swatch active" data-color="#00ff88" style="background:#00ff88"></div>
+          <div class="accent-swatch" data-color="#ff6b35" style="background:#ff6b35"></div>
+          <div class="accent-swatch" data-color="#7c3aed" style="background:#7c3aed"></div>
+          <div class="accent-swatch" data-color="#0ea5e9" style="background:#0ea5e9"></div>
+          <div class="accent-swatch" data-color="#f59e0b" style="background:#f59e0b"></div>
+        </div>
+        <h3 style="margin-top:2rem">Notifications</h3>
+        <div class="toggle-row">
+          <span>Likes on posts</span>
+          <label class="toggle"><input type="checkbox" checked /><span class="slider"></span></label>
+        </div>
+        <div class="toggle-row">
+          <span>New followers</span>
+          <label class="toggle"><input type="checkbox" checked /><span class="slider"></span></label>
+        </div>
+        <div class="toggle-row">
+          <span>Comments</span>
+          <label class="toggle"><input type="checkbox" /><span class="slider"></span></label>
+        </div>
+      </div>
+
+      <div class="settings-section card">
+        <h3>Account</h3>
+        <div class="account-stat-row"><span>Member since</span><span>Jan 2024</span></div>
+        <div class="account-stat-row"><span>Total posts</span><span id="acc-posts">0</span></div>
+        <div class="account-stat-row"><span>Total likes received</span><span id="acc-likes">0</span></div>
+        <button class="btn-danger" style="margin-top:2rem">Delete Account</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ USER PROFILE PAGE ═══════════════════ -->
+  <section class="page hidden" id="page-user-profile">
+    <button class="btn-back" id="btn-back">← Back</button>
+    <div class="profile-banner" style="background:linear-gradient(135deg,#1a1a2e,#16213e)"></div>
+    <div class="profile-header card">
+      <div class="profile-avatar-wrap">
+        <img src="" class="profile-avatar" id="uprofile-avatar" />
+      </div>
+      <div class="profile-info">
+        <h2 id="uprofile-name"></h2>
+        <p class="profile-handle" id="uprofile-handle"></p>
+        <p class="profile-bio" id="uprofile-bio"></p>
+        <div class="profile-tags" id="uprofile-tags"></div>
+        <div class="profile-stats">
+          <div class="stat"><span id="ustat-posts">0</span><label>Posts</label></div>
+          <div class="stat"><span id="ustat-followers">0</span><label>Followers</label></div>
+          <div class="stat"><span id="ustat-following">0</span><label>Following</label></div>
+        </div>
+        <button class="btn-follow" id="btn-follow-user">Follow</button>
+      </div>
+    </div>
+    <div id="uprofile-posts"></div>
+  </section>
+
+</main>
+
+<!-- COMMENT MODAL -->
+<div class="modal-overlay hidden" id="modal-overlay">
+  <div class="modal card" id="comment-modal">
+    <div class="modal-header">
+      <h3>Comments</h3>
+      <button class="modal-close" id="modal-close">✕</button>
+    </div>
+    <div id="comments-list"></div>
+    <div class="comment-input-wrap">
+      <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=devuser" class="user-avatar-sm" />
+      <input type="text" id="comment-input" placeholder="Write a comment..." />
+      <button id="btn-comment">Send</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast hidden" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
